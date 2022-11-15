@@ -118,10 +118,9 @@ public class DevTeamUI
     private void ShowDevTeamInformation(DevTeam devTeam)
     {
         string developers = "";
-        System.Console.WriteLine(devTeam.DevTeamMembers.Count);
         foreach (var developer in devTeam.DevTeamMembers)
         {
-            developers += developer.Id + ", ";
+            developers += developer.FullName + ", ";
         }
 
         Console.WriteLine($"Team ID: {devTeam.TeamId}\n" +
@@ -172,20 +171,20 @@ public class DevTeamUI
                 if (updateResult)
                 {
                     Console.Clear();
-                    System.Console.WriteLine("The developer was successfully updated.");
+                    System.Console.WriteLine("The developer team was successfully updated.");
                 }
                 else
                 {
                     Console.Clear();
-                    System.Console.WriteLine("Sorry, there was an issue updating the developer. Please try again.");
+                    System.Console.WriteLine("Sorry, there was an issue updating the developer team. Please try again.");
                 }
             }
             else
             {
-                System.Console.WriteLine("Sorry, there is no developer with that ID.");
+                System.Console.WriteLine("Sorry, there is no developer team with that ID.");
             }
         }
-        catch (Exception e) { System.Console.WriteLine("Sorry, there is no developer with that ID."); }
+        catch (Exception e) { System.Console.WriteLine("Sorry, there is no developer team with that ID."); }
     }
 
     private void DeleteDevTeam()
@@ -236,76 +235,38 @@ public class DevTeamUI
     private void AddMultiDevsToTeam()
     {
         Clear();
-        WriteLine("== Developer Team Listing ==");
-        ViewAllDevTeams();
         List<DevTeam> devTeam = _devTeamRepo.GetAllDevTeams();
+
         if (devTeam.Count() > 0)
         {
+            WriteLine("== Developer Team Listing ==");
+            ViewAllDevTeams();
             WriteLine("Please Select a DevTeam by Id for Multi Dev Addition.");
             int userInputDevTeamId = Convert.ToInt32(ReadLine());
-            DevTeam team = _devTeamRepo.GetDevTeamById(userInputDevTeamId);
+            DevTeam selectedDevTeam = _devTeamRepo.GetDevTeamById(userInputDevTeamId);
 
-            //UI update stuff....
-            List<Developer> auxDevInDb = _devRepo.GetAllDevelopers();
-
-            //what the user selects
+            List<Developer> developers = _devRepo.GetAllDevelopers();
             List<Developer> devsToAdd = new List<Developer>();
 
-            if (team != null)
+            if (selectedDevTeam != null)
             {
-                bool hasFilledPositions = false;
-                while (!hasFilledPositions)
+                ViewAllDevelopers();
+                WriteLine("Please add Developers by ID. Seperate with a comma to add multiple");
+                string userInputAddDeveloperIds = ReadLine();
+
+                List<int> developerIdsToAdd = userInputAddDeveloperIds.Split(',').Select(int.Parse).ToList();
+
+                foreach (int id in developerIdsToAdd)
                 {
-                    if (auxDevInDb.Count() > 0)
-                    {
-                        DisplayDevelopersInDB(auxDevInDb);
-                        WriteLine("Do you want to add a Developer y/n?");
-                        var userInputAnyDevs = ReadLine();
-                        if (userInputAnyDevs == "Y".ToLower())
-                        {
-                            WriteLine("Please Choose Dev by Id:");
-                            int userInputDevId = int.Parse(ReadLine());
-                            Developer dev = _devRepo.GetDeveloperById(userInputDevId);
-                            if (dev != null)
-                            {
-                                devsToAdd.Add(dev);
-                                auxDevInDb.Remove(dev);
-                            }
-                            else
-                            {
-                                WriteLine($"Sorry, the Dev with the Id: {userInputDevId} doesn't Exist.");
-                                WriteLine("Press Any Key to continue.");
-                                ReadKey();
-                            }
-                        }
-                        else
-                        {
-                            hasFilledPositions = true;
-                        }
-                    }
-                    else
-                    {
-                        WriteLine("There are no Developers in the Database.");
-                        ReadKey();
-                        break;
-                    }
+                    var dev = _devRepo.GetDeveloperById(id);
+                    devsToAdd.Add(dev);
                 }
-
-                // if (_devTeamRepo.AddMultiDevsToTeam(team.TeamId, devsToAdd))
-                // {
-                //     WriteLine("Success");
-                // }
-                // else
-                // {
-                //     WriteLine("Failure");
-                // }
+                _devTeamRepo.AddMultiDevsToTeam(userInputDevTeamId, devsToAdd);
             }
-
-
         }
         else
         {
-            WriteLine("There aren't any available Developer Teams to Delete.");
+            WriteLine("That ID Doesn't match any current Dev Teams.");
         }
         ReadKey();
     }
@@ -331,15 +292,66 @@ public class DevTeamUI
         }
     }
 
+    private void ViewAllDevelopers()
+    {
+        Console.Clear();
+        List<Developer> listOfDevelopers = _devRepo.GetAllDevelopers();
+        if (listOfDevelopers.Count > 0)
+        {
+            foreach (var developer in listOfDevelopers)
+            {
+                ShowDeveloperInformation(developer);
+            }
+        }
+        else
+        { System.Console.WriteLine("Sorry there is no developers in the database."); }
+        Console.ReadKey();
+    }
+
+    private void ShowDeveloperInformation(Developer developer)
+    {
+        Console.WriteLine($"ID: {developer.Id}\n" +
+        $"Name: {developer.FullName}\n" +
+        $"Has Pluralsight license: {developer.HasPluralsight}\n" +
+        "-----------------------------------\n");
+    }
+
+    private void SeedDeveloper()
+    {
+        Developer dev1 = new Developer(1, "Naruto", "Uzumaki", false);
+        Developer dev2 = new Developer(2, "Sasuke", "Uchiha", true);
+        Developer dev3 = new Developer(3, "Itachi", "Uchiha", true);
+        Developer dev4 = new Developer(4, "Kakashi", "Hatake", true);
+        Developer dev5 = new Developer(5, "Shikamaru", "Nara", false);
+        Developer dev6 = new Developer(6, "Konohamaru", "Sarutobi", false);
+        Developer dev7 = new Developer(7, "Minato", "Namikaze", false);
+        Developer dev8 = new Developer(8, "Hinata", "Hyuga", true);
+        Developer dev9 = new Developer(9, "Madara", "Uchiha", true);
+        Developer dev10 = new Developer(10, "Hashirama", "Senju", false);
+
+        _devRepo.AddDeveloperToDb(dev1);
+        _devRepo.AddDeveloperToDb(dev2);
+        _devRepo.AddDeveloperToDb(dev3);
+        _devRepo.AddDeveloperToDb(dev4);
+        _devRepo.AddDeveloperToDb(dev5);
+        _devRepo.AddDeveloperToDb(dev6);
+        _devRepo.AddDeveloperToDb(dev7);
+        _devRepo.AddDeveloperToDb(dev8);
+        _devRepo.AddDeveloperToDb(dev9);
+        _devRepo.AddDeveloperToDb(dev10);
+    }
+
     private void SeedDevTeam()
     {
-        var teamOneMembers = _devRepo.GetDevelopersById(new List<int>() { 1, 3, 5, 7 });
-        var teamTwoMembers = _devRepo.GetDevelopersById(new List<int> { 2, 4, 6, 8 });
-        var teamThreeMembers = _devRepo.GetDevelopersById(new List<int> { 9, 10 });
+        SeedDeveloper();
 
-        DevTeam teamOne = new DevTeam(1, "Thank You", teamOneMembers);
-        DevTeam teamTwo = new DevTeam(2, "For The", teamTwoMembers);
-        DevTeam teamThree = new DevTeam(3, "Help", teamThreeMembers);
+        var teamOneMembers = _devRepo.GetDevelopersById(new List<int>() { 10, 3, 6, 7 });
+        var teamTwoMembers = _devRepo.GetDevelopersById(new List<int> { 9, 4, 5, 8 });
+        var teamThreeMembers = _devRepo.GetDevelopersById(new List<int> { 1, 2 });
+
+        DevTeam teamOne = new DevTeam(1, "Front-Line", teamOneMembers);
+        DevTeam teamTwo = new DevTeam(2, "Back-Line", teamTwoMembers);
+        DevTeam teamThree = new DevTeam(3, "Generals", teamThreeMembers);
 
         _devTeamRepo.AddDevTeam(teamOne);
         _devTeamRepo.AddDevTeam(teamTwo);

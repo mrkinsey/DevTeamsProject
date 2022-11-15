@@ -5,8 +5,8 @@ public class DevTeam
 
     public DevTeam(int teamId, string teamName, List<Developer> devTeamMembers)
     {
-        TeamName = teamName;
         TeamId = teamId;
+        TeamName = teamName;
         DevTeamMembers = devTeamMembers;
     }
 

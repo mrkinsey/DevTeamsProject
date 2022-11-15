@@ -79,20 +79,16 @@ public class DevTeamRepository
 
     // Challenge
     // We need the teamID and the list<developer> to add
-    public bool AddMultiDevsToTeam(int developerAddToTeam)
+    public void AddMultiDevsToTeam(int devTeamId, List<Developer> developers)
     {
-        DevTeam newDevId = GetDevTeamById(developerAddToTeam);
+        DevTeam devTeam = GetDevTeamById(devTeamId);
 
         int initialTeamCount = _devTeamDb.Count();
-        _devTeamDb.Add(newDevId);
 
-        if (_devTeamDb.Count > initialTeamCount)
+        foreach (var developer in developers)
         {
-            return true;
-        }
-        else
-        {
-            return false;
+            devTeam.DevTeamMembers.Add(developer);
         }
     }
+
 }
