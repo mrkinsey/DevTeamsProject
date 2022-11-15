@@ -14,7 +14,6 @@ public class DeveloperRepository
         if (_devsDb.Count > initialDevCount)
         {
             AssignId(developer);
-            _devsDb.Add(developer);
             return true;
         }
         else
@@ -75,7 +74,7 @@ public class DeveloperRepository
     }
 
     //todo return a List<Developer> based on whether they have Pluralsight
-    public List<Developer> GetDeveloperByPluralsight()
+    public List<Developer> GetDeveloperByPluralsight(Developer hasPluralsight)
     {
         List<Developer> pluralsight = new List<Developer>();
 
@@ -87,5 +86,16 @@ public class DeveloperRepository
             }
         }
         return pluralsight;
+    }
+
+    public List<Developer> GetDevelopersById(List<int> developerIds)
+    {
+        List<Developer> developers = new List<Developer>();
+        foreach (var developerId in developerIds)
+        {
+            var developer = GetDeveloperById(developerId);
+            developers.Add(developer);
+        }
+        return developers;
     }
 }

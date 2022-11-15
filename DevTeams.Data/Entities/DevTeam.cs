@@ -3,11 +3,11 @@ public class DevTeam
 {
     public DevTeam() { }
 
-    public DevTeam(List<Developer> devTeamMembers, string teamName, int teamId)
+    public DevTeam(int teamId, string teamName, List<Developer> devTeamMembers)
     {
-        DevTeamMembers = devTeamMembers;
         TeamName = teamName;
         TeamId = teamId;
+        DevTeamMembers = devTeamMembers;
     }
 
     public List<Developer> DevTeamMembers { get; set; } = new List<Developer>();

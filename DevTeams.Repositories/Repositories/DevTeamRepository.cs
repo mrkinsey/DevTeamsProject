@@ -1,8 +1,15 @@
 
 public class DevTeamRepository
 {
+    private DeveloperRepository _devRepo;
+
     private readonly List<DevTeam> _devTeamDb = new List<DevTeam>();
     private int _count;
+
+    public DevTeamRepository(DeveloperRepository devRepo)
+    {
+        _devRepo = devRepo;
+    }
 
     //todo Create: Create a developer team
     public bool AddDevTeam(DevTeam team)
@@ -12,12 +19,19 @@ public class DevTeamRepository
 
         if (_devTeamDb.Count > startingCount)
         {
+            AssignId(team);
             return true;
         }
         else
         {
             return false;
         }
+    }
+
+    private void AssignId(DevTeam team)
+    {
+        _count++;
+        team.TeamId = _count;
     }
 
     //todo: Read: Get all developer teams
@@ -65,18 +79,20 @@ public class DevTeamRepository
 
     // Challenge
     // We need the teamID and the list<developer> to add
-    // public bool AddMultiDevsToTeam(int teamID, List<Developer> devs)
-    // {
-    //     var teamInDB = GetDevTeamById(GetDevTeamById);
+    public bool AddMultiDevsToTeam(int developerAddToTeam)
+    {
+        DevTeam newDevId = GetDevTeamById(developerAddToTeam);
 
-    //     if (teamInDB != null && devs != null)
-    //     {
-    //         teamInDB.DevTeamMembers.AddRange(devs);
-    //         return true;
-    //     }
-    //     else
-    //     {
-    //         return false;
-    //     }
-    // }
+        int initialTeamCount = _devTeamDb.Count();
+        _devTeamDb.Add(newDevId);
+
+        if (_devTeamDb.Count > initialTeamCount)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

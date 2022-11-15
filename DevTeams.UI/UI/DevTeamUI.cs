@@ -10,11 +10,12 @@ public class DevTeamUI
     public DevTeamUI(DeveloperRepository devRepo)
     {
         _devRepo = devRepo;
-        _devTeamRepo = new DevTeamRepository();
+        _devTeamRepo = new DevTeamRepository(_devRepo);
     }
 
     public void Run()
     {
+        SeedDevTeam();
         RunApplication();
     }
 
@@ -116,9 +117,16 @@ public class DevTeamUI
 
     private void ShowDevTeamInformation(DevTeam devTeam)
     {
+        string developers = "";
+        System.Console.WriteLine(devTeam.DevTeamMembers.Count);
+        foreach (var developer in devTeam.DevTeamMembers)
+        {
+            developers += developer.Id + ", ";
+        }
+
         Console.WriteLine($"Team ID: {devTeam.TeamId}\n" +
                         $"Team Name: {devTeam.TeamName}\n" +
-                        $"Team Members: {devTeam.DevTeamMembers}\n" +
+                        $"Team Members: {developers}\n" +
                         "-----------------------------------\n");
     }
 
@@ -325,5 +333,16 @@ public class DevTeamUI
 
     private void SeedDevTeam()
     {
+        var teamOneMembers = _devRepo.GetDevelopersById(new List<int>() { 1, 3, 5, 7 });
+        var teamTwoMembers = _devRepo.GetDevelopersById(new List<int> { 2, 4, 6, 8 });
+        var teamThreeMembers = _devRepo.GetDevelopersById(new List<int> { 9, 10 });
+
+        DevTeam teamOne = new DevTeam(1, "Thank You", teamOneMembers);
+        DevTeam teamTwo = new DevTeam(2, "For The", teamTwoMembers);
+        DevTeam teamThree = new DevTeam(3, "Help", teamThreeMembers);
+
+        _devTeamRepo.AddDevTeam(teamOne);
+        _devTeamRepo.AddDevTeam(teamTwo);
+        _devTeamRepo.AddDevTeam(teamThree);
     }
 }
