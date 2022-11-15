@@ -1,0 +1,12 @@
+C:\ElevenFiftyProjects\codingFoundations\csharpBasics\13_DevTeams\DevTeams.Data\bin\Debug\net6.0\DevTeams.Data.deps.json
+C:\ElevenFiftyProjects\codingFoundations\csharpBasics\13_DevTeams\DevTeams.Data\bin\Debug\net6.0\DevTeams.Data.dll
+C:\ElevenFiftyProjects\codingFoundations\csharpBasics\13_DevTeams\DevTeams.Data\bin\Debug\net6.0\DevTeams.Data.pdb
+C:\ElevenFiftyProjects\codingFoundations\csharpBasics\13_DevTeams\DevTeams.Data\obj\Debug\net6.0\DevTeams.Data.csproj.AssemblyReference.cache
+C:\ElevenFiftyProjects\codingFoundations\csharpBasics\13_DevTeams\DevTeams.Data\obj\Debug\net6.0\DevTeams.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\ElevenFiftyProjects\codingFoundations\csharpBasics\13_DevTeams\DevTeams.Data\obj\Debug\net6.0\DevTeams.Data.AssemblyInfoInputs.cache
+C:\ElevenFiftyProjects\codingFoundations\csharpBasics\13_DevTeams\DevTeams.Data\obj\Debug\net6.0\DevTeams.Data.AssemblyInfo.cs
+C:\ElevenFiftyProjects\codingFoundations\csharpBasics\13_DevTeams\DevTeams.Data\obj\Debug\net6.0\DevTeams.Data.csproj.CoreCompileInputs.cache
+C:\ElevenFiftyProjects\codingFoundations\csharpBasics\13_DevTeams\DevTeams.Data\obj\Debug\net6.0\DevTeams.Data.dll
+C:\ElevenFiftyProjects\codingFoundations\csharpBasics\13_DevTeams\DevTeams.Data\obj\Debug\net6.0\refint\DevTeams.Data.dll
+C:\ElevenFiftyProjects\codingFoundations\csharpBasics\13_DevTeams\DevTeams.Data\obj\Debug\net6.0\DevTeams.Data.pdb
+C:\ElevenFiftyProjects\codingFoundations\csharpBasics\13_DevTeams\DevTeams.Data\obj\Debug\net6.0\ref\DevTeams.Data.dll

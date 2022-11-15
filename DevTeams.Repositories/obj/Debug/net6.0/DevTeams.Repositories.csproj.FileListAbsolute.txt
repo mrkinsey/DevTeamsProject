@@ -1,0 +1,15 @@
+C:\ElevenFiftyProjects\codingFoundations\csharpBasics\13_DevTeams\DevTeams.Repositories\bin\Debug\net6.0\DevTeams.Repositories.deps.json
+C:\ElevenFiftyProjects\codingFoundations\csharpBasics\13_DevTeams\DevTeams.Repositories\bin\Debug\net6.0\DevTeams.Repositories.dll
+C:\ElevenFiftyProjects\codingFoundations\csharpBasics\13_DevTeams\DevTeams.Repositories\bin\Debug\net6.0\DevTeams.Repositories.pdb
+C:\ElevenFiftyProjects\codingFoundations\csharpBasics\13_DevTeams\DevTeams.Repositories\bin\Debug\net6.0\DevTeams.Data.dll
+C:\ElevenFiftyProjects\codingFoundations\csharpBasics\13_DevTeams\DevTeams.Repositories\bin\Debug\net6.0\DevTeams.Data.pdb
+C:\ElevenFiftyProjects\codingFoundations\csharpBasics\13_DevTeams\DevTeams.Repositories\obj\Debug\net6.0\DevTeams.Repositories.csproj.AssemblyReference.cache
+C:\ElevenFiftyProjects\codingFoundations\csharpBasics\13_DevTeams\DevTeams.Repositories\obj\Debug\net6.0\DevTeams.Repositories.GeneratedMSBuildEditorConfig.editorconfig
+C:\ElevenFiftyProjects\codingFoundations\csharpBasics\13_DevTeams\DevTeams.Repositories\obj\Debug\net6.0\DevTeams.Repositories.AssemblyInfoInputs.cache
+C:\ElevenFiftyProjects\codingFoundations\csharpBasics\13_DevTeams\DevTeams.Repositories\obj\Debug\net6.0\DevTeams.Repositories.AssemblyInfo.cs
+C:\ElevenFiftyProjects\codingFoundations\csharpBasics\13_DevTeams\DevTeams.Repositories\obj\Debug\net6.0\DevTeams.Repositories.csproj.CoreCompileInputs.cache
+C:\ElevenFiftyProjects\codingFoundations\csharpBasics\13_DevTeams\DevTeams.Repositories\obj\Debug\net6.0\DevTeams.Repositories.csproj.CopyComplete
+C:\ElevenFiftyProjects\codingFoundations\csharpBasics\13_DevTeams\DevTeams.Repositories\obj\Debug\net6.0\DevTeams.Repositories.dll
+C:\ElevenFiftyProjects\codingFoundations\csharpBasics\13_DevTeams\DevTeams.Repositories\obj\Debug\net6.0\refint\DevTeams.Repositories.dll
+C:\ElevenFiftyProjects\codingFoundations\csharpBasics\13_DevTeams\DevTeams.Repositories\obj\Debug\net6.0\DevTeams.Repositories.pdb
+C:\ElevenFiftyProjects\codingFoundations\csharpBasics\13_DevTeams\DevTeams.Repositories\obj\Debug\net6.0\ref\DevTeams.Repositories.dll
