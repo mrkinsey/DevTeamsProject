@@ -54,7 +54,6 @@ public class DeveloperUI
                     DeleteDeveloper();
                     break;
                 case "6":
-                    System.Console.WriteLine("Test");
                     ViewDevsWithOutPluralsight();
                     break;
                 case "7":
@@ -84,7 +83,6 @@ public class DeveloperUI
         {
             System.Console.WriteLine("Sorry, developer was not added to the database. Please try again.");
         }
-
     }
 
     private Developer AddNewDeveloperInformation()
@@ -171,56 +169,60 @@ public class DeveloperUI
 
         System.Console.WriteLine("Please enter a Developer ID to update their information.");
 
-        int userInputUpdate = int.Parse(ReadLine());
-        Developer developerToUpdate = _devRepo.GetDeveloperById(userInputUpdate);
-
-        Console.Clear();
-        if (developerToUpdate != null)
+        try
         {
-            Developer newDeveloper = new Developer();
-
-            System.Console.WriteLine("Please enter the developers First Name: ");
-            newDeveloper.FirstName = Console.ReadLine();
-
-            System.Console.WriteLine("Please enter the developers Last Name: ");
-            newDeveloper.LastName = Console.ReadLine();
-
-            System.Console.WriteLine("Please enter if the Developer has a Pluralsight license.\n" +
-            "1. Yes" +
-            "2. No");
-
-            string pluralsightUpdateResponse = Console.ReadLine();
-            switch (pluralsightUpdateResponse)
+            int userInputUpdate = int.Parse(ReadLine());
+            Developer developerToUpdate = _devRepo.GetDeveloperById(userInputUpdate);
+            Console.Clear();
+            if (developerToUpdate != null)
             {
-                case "1":
-                    newDeveloper.HasPluralsight = true;
-                    break;
-                case "2":
-                    newDeveloper.HasPluralsight = false;
-                    break;
-                default:
-                    System.Console.WriteLine("Sorry, input was accepted. Please try again.");
-                    DTUtils.PressAnyKey();
-                    break;
-            }
+                Developer newDeveloper = new Developer();
 
-            bool updateResult = _devRepo.UpdateDeveloperInfo(userInputUpdate, newDeveloper);
+                System.Console.WriteLine("Please enter the developers First Name: ");
+                newDeveloper.FirstName = Console.ReadLine();
 
-            if (updateResult)
-            {
-                Console.Clear();
-                System.Console.WriteLine("The developer was successfully updated.");
+                System.Console.WriteLine("Please enter the developers Last Name: ");
+                newDeveloper.LastName = Console.ReadLine();
+
+                System.Console.WriteLine("Please enter if the Developer has a Pluralsight license.\n" +
+                "1. Yes\n" +
+                "2. No\n");
+
+                string pluralsightUpdateResponse = Console.ReadLine();
+                switch (pluralsightUpdateResponse)
+                {
+                    case "1":
+                        newDeveloper.HasPluralsight = true;
+                        break;
+                    case "2":
+                        newDeveloper.HasPluralsight = false;
+                        break;
+                    default:
+                        System.Console.WriteLine("Sorry, input was accepted. Please try again.");
+                        DTUtils.PressAnyKey();
+                        break;
+                }
+
+                bool updateResult = _devRepo.UpdateDeveloperInfo(userInputUpdate, newDeveloper);
+
+                if (updateResult)
+                {
+                    Console.Clear();
+                    System.Console.WriteLine("The developer was successfully updated.");
+                }
+                else
+                {
+                    Console.Clear();
+                    System.Console.WriteLine("Sorry, there was an issue updating the developer. Please try again.");
+                }
             }
             else
             {
-                Console.Clear();
-                System.Console.WriteLine("Sorry, there was an issue updating the developer. Please try again.");
+                System.Console.WriteLine("Sorry, there is no developer with that ID.");
             }
         }
-        else
-        {
-            System.Console.WriteLine("Sorry, there is no developer with that ID.");
-        }
+        catch (Exception e) { System.Console.WriteLine("Sorry, there is no developer with that ID."); }
+
     }
 
     private void DeleteDeveloper()
@@ -270,22 +272,25 @@ public class DeveloperUI
 
     private void ViewDevsWithOutPluralsight()
     {
-        System.Console.WriteLine("Test");
-        List<Developer> devsWithOutPS = _devRepo.GetAllDevelopers().Where(x => x.HasPluralsight == true).ToList();
+        Console.Clear();
+        List<Developer> devsWithOutPS = _devRepo.GetAllDevelopers();
 
-        if (devsWithOutPS.Count() > 0)
+        if (devsWithOutPS.Count > 0)
         {
             foreach (var developer in devsWithOutPS)
             {
-                System.Console.WriteLine(developer);
-
-                ShowDeveloperInformation(developer);
+                if (!developer.HasPluralsight)
+                {
+                    ShowDeveloperInformation(developer);
+                }
             }
         }
         else
         {
             WriteLine("There Are No Developers at this time with out a Pluralsight Membership.");
         }
+        Console.ReadKey();
+
     }
 
     private void ReturnToMainMenu()
@@ -306,13 +311,23 @@ public class DeveloperUI
         Developer dev1 = new Developer(1, "Naruto", "Uzumaki", false);
         Developer dev2 = new Developer(2, "Sasuke", "Uchiha", true);
         Developer dev3 = new Developer(3, "Itachi", "Uchiha", true);
-        Developer dev4 = new Developer(4, "Kakashi", "Hataki", false);
-        Developer dev5 = new Developer(5, "Shikamara", "Nara", false);
+        Developer dev4 = new Developer(4, "Kakashi", "Hatake", true);
+        Developer dev5 = new Developer(5, "Shikamaru", "Nara", false);
+        Developer dev6 = new Developer(6, "Konohamaru", "Sarutobi", false);
+        Developer dev7 = new Developer(7, "Minato", "Namikaze", false);
+        Developer dev8 = new Developer(8, "Hinata", "Hyuga", true);
+        Developer dev9 = new Developer(9, "Madara", "Uchiha", true);
+        Developer dev10 = new Developer(10, "Hashirama", "Senju", false);
 
         _devRepo.AddDeveloperToDb(dev1);
         _devRepo.AddDeveloperToDb(dev2);
         _devRepo.AddDeveloperToDb(dev3);
         _devRepo.AddDeveloperToDb(dev4);
         _devRepo.AddDeveloperToDb(dev5);
+        _devRepo.AddDeveloperToDb(dev6);
+        _devRepo.AddDeveloperToDb(dev7);
+        _devRepo.AddDeveloperToDb(dev8);
+        _devRepo.AddDeveloperToDb(dev9);
+        _devRepo.AddDeveloperToDb(dev10);
     }
 }

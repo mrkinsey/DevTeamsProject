@@ -4,11 +4,12 @@ public class ProgramUI
 {
     private DeveloperUI _devUI;
     private DevTeamUI _devTeamUI;
-
+    private DeveloperRepository _devRepo;
     public ProgramUI()
     {
+        _devRepo = new DeveloperRepository();
         _devUI = new DeveloperUI();
-        _devTeamUI = new DevTeamUI();
+        _devTeamUI = new DevTeamUI(_devRepo);
     }
 
     public void Run()
