@@ -61,7 +61,6 @@ public class DevTeamRepository
         if (oldDevTeam != null)
         {
             oldDevTeam.TeamName = updatedDevTeam.TeamName;
-            oldDevTeam.DevTeamMembers = updatedDevTeam.DevTeamMembers;
             return true;
         }
         else

@@ -72,7 +72,7 @@ public class DeveloperUI
 
     private void AddDeveloper()
     {
-        Clear();
+        Console.Clear();
 
         Developer developer = AddNewDeveloperInformation();
         if (_devRepo.AddDeveloperToDb(developer))

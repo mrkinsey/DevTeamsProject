@@ -204,8 +204,8 @@ public class DevTeamUI
                 System.Console.WriteLine($"{count}. {devTeam.TeamName}");
             }
 
-            int targetDeveloperId = int.Parse(Console.ReadLine());
-            int targetIndex = targetDeveloperId - 1;
+            int targetDevTeamId = int.Parse(Console.ReadLine());
+            int targetIndex = targetDevTeamId - 1;
 
             if (targetIndex >= 0 && targetIndex < devTeamList.Count)
             {
